@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache"
 
 
 const AddWordPage = async () => {
+  await connectToDB();
     const words = await Word.find({});
     
     const addWord = async (formData) => {
@@ -11,7 +12,7 @@ const AddWordPage = async () => {
        
         const word = formData.get("word");
         const hint = formData.get("hint");
-        await connectToDB();
+       
         const existingWord = await Word.findOne({
             word,
         });
